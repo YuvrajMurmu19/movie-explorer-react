@@ -1,25 +1,32 @@
 //will list all of the movies
 //can search for movies here 
-import MovieCard from "../components/MovieCard"   
-function Home(){
+import MovieCard from "../components/MovieCard"
+import { useState } from "react"
+function Home() {
+    const [searchQuery, setSearchQuery] = useState("")
     const movies = [
-        {id:1 ,title:"John Wick",release_date:"2020"},
-        {id:2 ,title:"Terminator",release_date:"1999"},
-        {id:3 ,title:"Matrix",release_date:"1998"},
+        { id: 1, title: "John Wick", release_date: "2020" },
+        { id: 2, title: "Terminator", release_date: "1999" },
+        { id: 3, title: "Matrix", release_date: "1998" },
 
     ]
-    const handleSearch = () =>{
+    const handleSearch = (e) => {
+        e.preventDefault()
+        alert(searchQuery)
+        setSearchQuery("")
 
     }
 
-    return(
+    return (
         <div className="home">
-            <form onSubmit={handleSearch} className="search-from">
-                <input type="text" placeholder="Search for movies..." className="search-input"/>
+            <form onSubmit={handleSearch} className="search-form">
+                <input type="text" placeholder="Search for movies..." className="search-input"
+                value={searchQuery} onChange ={(e)=>setSearchQuery(e.target.value)} />
                 <button type="submit" className="search-button">Search</button>
             </form>
             <div className="movies-grid">
-                {movies.map((movie)=>(
+                {movies.map((movie) => 
+                movie.title.toLowerCase().startsWith(searchQuery) && (
                     <MovieCard movie={movie} key={movie.id} />
                 ))}
 
