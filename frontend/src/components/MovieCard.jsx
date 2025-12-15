@@ -1,3 +1,4 @@
+import "../css/MovieCard.css"
 function MovieCard({movie}){
 // MovieCard has a prop movie that will be an object with many properties
 // like movie name, release Date, movie poster etc

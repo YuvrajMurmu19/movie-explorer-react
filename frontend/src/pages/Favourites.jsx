@@ -1,4 +1,5 @@
 //will show a list of all the favourite movies
+import "../css/Favourites.css"
 function Favourites(){
     return <div className="favourites-empty">
         <h2>No Favourite Movies Yet</h2>
