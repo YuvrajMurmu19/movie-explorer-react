@@ -9,34 +9,34 @@ function Home() {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    
-    
 
-        const loadPopularMovies = async () => {
-            //setLoading(true)
-            try {
-                const popularMovies = await getPopularMovies()
-                setMovies(popularMovies)
-                setError(null)
 
-            } catch (err) {
-                console.log(err)
-                setError("Failed to load movies...")
-            }
-            finally {
-                setLoading(false)
-            }
+
+    const loadPopularMovies = async () => {
+        //setLoading(true)
+        try {
+            const popularMovies = await getPopularMovies()
+            setMovies(popularMovies)
+            setError(null)
+
+        } catch (err) {
+            console.log(err)
+            setError("Failed to load movies...")
         }
-    
-    useEffect(() =>{
-      loadPopularMovies()
-    },[])
+        finally {
+            setLoading(false)
+        }
+    }
 
-    useEffect(()=>{
-        if(searchQuery.trim() ===""){
+    useEffect(() => {
+        loadPopularMovies()
+    }, [])
+
+    useEffect(() => {
+        if (searchQuery.trim() === "") {
             loadPopularMovies()
         }
-    },[searchQuery])
+    }, [searchQuery])
 
 
     const handleSearch = async (e) => {
@@ -56,7 +56,7 @@ function Home() {
         } finally {
             setLoading(false)
         }
-       
+
 
     }
 
